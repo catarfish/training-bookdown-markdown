@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Rmd Basics for crafting your document | Markdown/Bookdown Tutorial</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Rmd Basics for crafting your document | Markdown/Bookdown Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Rmd Basics for crafting your document | Markdown/Bookdown Tutorial" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Catarina Pien" />
+
+
+<meta name="date" content="2020-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="RCoding.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#directions-to-start-a-book-after-downloading-packages-described"><i class="fa fa-check"></i><b>1.1</b> Directions to start a book (after downloading packages described)</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#structure-of-book"><i class="fa fa-check"></i><b>1.2</b> Structure of book</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#other-tips"><i class="fa fa-check"></i><b>1.3</b> Other tips</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#pdf"><i class="fa fa-check"></i><b>1.4</b> PDF</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="RmdTools.html"><a href="RmdTools.html"><i class="fa fa-check"></i><b>2</b> Rmd Basics for crafting your document</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="RmdTools.html"><a href="RmdTools.html#display"><i class="fa fa-check"></i><b>2.1</b> Display</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="RmdTools.html"><a href="RmdTools.html#font"><i class="fa fa-check"></i><b>2.1.1</b> Font</a></li>
+<li class="chapter" data-level="2.1.2" data-path="RmdTools.html"><a href="RmdTools.html#blockquotes"><i class="fa fa-check"></i><b>2.1.2</b> Blockquotes</a></li>
+<li class="chapter" data-level="2.1.3" data-path="RmdTools.html"><a href="RmdTools.html#indent-text"><i class="fa fa-check"></i><b>2.1.3</b> Indent Text</a></li>
+<li class="chapter" data-level="2.1.4" data-path="RmdTools.html"><a href="RmdTools.html#text-in-a-gray-block"><i class="fa fa-check"></i><b>2.1.4</b> Text in a gray block</a></li>
+<li class="chapter" data-level="2.1.5" data-path="RmdTools.html"><a href="RmdTools.html#equations"><i class="fa fa-check"></i><b>2.1.5</b> Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="RmdTools.html"><a href="RmdTools.html#organization"><i class="fa fa-check"></i><b>2.2</b> Organization</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="RmdTools.html"><a href="RmdTools.html#headers"><i class="fa fa-check"></i><b>2.2.1</b> Headers:</a></li>
+<li class="chapter" data-level="" data-path="RmdTools.html"><a href="RmdTools.html#header-with-no-numbering"><i class="fa fa-check"></i>Header with no numbering:</a></li>
+<li class="chapter" data-level="2.2.2" data-path="RmdTools.html"><a href="RmdTools.html#lists"><i class="fa fa-check"></i><b>2.2.2</b> Lists:</a></li>
+<li class="chapter" data-level="2.2.3" data-path="RmdTools.html"><a href="RmdTools.html#tabs"><i class="fa fa-check"></i><b>2.2.3</b> Tabs</a></li>
+<li class="chapter" data-level="2.2.4" data-path="RmdTools.html"><a href="RmdTools.html#code-plotting-captions"><i class="fa fa-check"></i><b>2.2.4</b> Code, Plotting, Captions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="RmdTools.html"><a href="RmdTools.html#tables"><i class="fa fa-check"></i><b>2.3</b> Tables</a></li>
+<li class="chapter" data-level="2.4" data-path="RmdTools.html"><a href="RmdTools.html#images"><i class="fa fa-check"></i><b>2.4</b> Images</a></li>
+<li class="chapter" data-level="2.5" data-path="RmdTools.html"><a href="RmdTools.html#in-text-references"><i class="fa fa-check"></i><b>2.5</b> In text References</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="RmdTools.html"><a href="RmdTools.html#figuretablechapter"><i class="fa fa-check"></i><b>2.5.1</b> Figure/Table/Chapter</a></li>
+<li class="chapter" data-level="2.5.2" data-path="RmdTools.html"><a href="RmdTools.html#citations"><i class="fa fa-check"></i><b>2.5.2</b> Citations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="RCoding.html"><a href="RCoding.html"><i class="fa fa-check"></i><b>3</b> Coding</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="RCoding.html"><a href="RCoding.html#chunks"><i class="fa fa-check"></i><b>3.1</b> Chunks</a></li>
+<li class="chapter" data-level="3.2" data-path="RCoding.html"><a href="RCoding.html#chunk-details"><i class="fa fa-check"></i><b>3.2</b> Chunk details</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="interactive-tools.html"><a href="interactive-tools.html"><i class="fa fa-check"></i><b>4</b> Interactive tools</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="interactive-tools.html"><a href="interactive-tools.html#plotly"><i class="fa fa-check"></i><b>4.1</b> Plotly</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="RmdTools.html"><a href="RmdTools.html#code"><i class="fa fa-check"></i><b>4.1.1</b> Code</a></li>
+<li class="chapter" data-level="4.1.2" data-path="RmdTools.html"><a href="RmdTools.html#plot"><i class="fa fa-check"></i><b>4.1.2</b> Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="interactive-tools.html"><a href="interactive-tools.html#leaflet"><i class="fa fa-check"></i><b>4.2</b> Leaflet</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
+<ul>
+<li class="chapter" data-level="4.3" data-path="references.html"><a href="references.html#bookdown"><i class="fa fa-check"></i><b>4.3</b> Bookdown</a></li>
+<li class="chapter" data-level="4.4" data-path="references.html"><a href="references.html#rmarkdown"><i class="fa fa-check"></i><b>4.4</b> RMarkdown</a></li>
+<li class="chapter" data-level="4.5" data-path="references.html"><a href="references.html#plotly-annotations-and-labels"><i class="fa fa-check"></i><b>4.5</b> Plotly Annotations and Labels</a></li>
+<li class="chapter" data-level="4.6" data-path="interactive-tools.html"><a href="interactive-tools.html#leaflet"><i class="fa fa-check"></i><b>4.6</b> Leaflet</a></li>
+<li class="chapter" data-level="4.7" data-path="references.html"><a href="references.html#example-book"><i class="fa fa-check"></i><b>4.7</b> Example Book</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Markdown/Bookdown Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="RmdTools" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Rmd Basics for crafting your document</h1>
+<div id="display" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Display</h2>
+<div id="font" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Font</h3>
+<ul>
+<li><em>Italics</em>: <code>_text_</code> or <code>*text*</code></li>
+<li><strong>Bold</strong>: <code>__text__</code> (two underscores) or <code>**text**</code></li>
+<li>Subscripts e.g. H<sub>2</sub>O <code>H~2~O</code></li>
+</ul>
+</div>
+<div id="blockquotes" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Blockquotes</h3>
+<p>Use <code>&gt;</code></p>
+<pre><code>&gt; &quot;To sustainably manage the water resources of California, in cooperation with 
+&gt; other agencies, to benefit the state&#39;s people and protect, restore, and enhance the
+&gt; natural and human environments.&quot; 
+&gt; 
+&gt; --- DWR</code></pre>
+<blockquote>
+<p>“To sustainably manage the water resources of California, in cooperation with other
+agencies, to benefit the state’s people and protect, restore, and
+enhance the natural and human environments.”</p>
+<p>— DWR</p>
+</blockquote>
+</div>
+<div id="indent-text" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Indent Text</h3>
+<p>Use <code>|</code></p>
+<pre><code>| Here you can 
+|  indent and separate 
+|   lines
+|    for fun 
+|   patterns
+|  like
+| this </code></pre>
+<div class="line-block">Here you can<br />
+ indent and separate<br />
+  lines<br />
+   for fun<br />
+  patterns<br />
+ like<br />
+this</div>
+</div>
+<div id="text-in-a-gray-block" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Text in a gray block</h3>
+<p>Enclose in <code>```</code> or indent by 4 spaces</p>
+<pre><code>``` 
+Here is a chunk of code 
+```    </code></pre>
+<p>Result:</p>
+<pre><code>Here is a chunk of code</code></pre>
+</div>
+<div id="equations" class="section level3" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Equations</h3>
+<p>Equations<br />
+Surround with <code>$</code></p>
+<pre><code>$a^2 + b^2 = c^2$  </code></pre>
+<p><span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
+<p>Alternatively for a more complicated equation:</p>
+<pre><code>\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:binom)
+\end{equation} </code></pre>
+<p>(The #eq:binom can be used to reference this equation later)</p>
+<p><span class="math display" id="eq:binom">\[\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  \tag{2.1}
+\end{equation}\]</span></p>
+</div>
+</div>
+<div id="organization" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Organization</h2>
+<div id="headers" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Headers:</h3>
+<p><code># Header 1 (Largest)</code><br />
+<code>## Header 2</code><br />
+<code>### Header 3</code></p>
+</div>
+<div id="header-with-no-numbering" class="section level3 unnumbered">
+<h3>Header with no numbering:</h3>
+<p><code>### Header {-}</code></p>
+</div>
+<div id="lists" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Lists:</h3>
+<div id="use---or" class="section level4" number="2.2.2.1">
+<h4><span class="header-section-number">2.2.2.1</span> Use <code>*</code>, <code>-</code>, or <code>+</code></h4>
+<pre><code>* peas
+* apples
+* carrots
+  * baby
+  * large
+    * colored
+    * orange</code></pre>
+<ul>
+<li>peas</li>
+<li>apples</li>
+<li>carrots
+<ul>
+<li>baby</li>
+<li>large
+<ul>
+<li>colored</li>
+<li>orange</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="use-numbers" class="section level4" number="2.2.2.2">
+<h4><span class="header-section-number">2.2.2.2</span> Use numbers:</h4>
+<pre><code>1. Enter data
+2. QAQC
+3. Publish Data  </code></pre>
+<ol style="list-style-type: decimal">
+<li>Enter data</li>
+<li>QAQC</li>
+<li>Publish Data</li>
+</ol>
+</div>
+</div>
+<div id="tabs" class="section level3 tabset tabset-pills" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Tabs</h3>
+<p>Use <code>{.tabset}</code> and header levels. Sub-headers (exactly one level down) will become tabs.<br />
+<code>### Project {.tabset}</code><br />
+<code>#### Part A</code><br />
+<code>#### Part B</code></p>
+</div>
+<div id="code-plotting-captions" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Code, Plotting, Captions</h3>
+<div id="code" class="section level4" number="2.2.4.1">
+<h4><span class="header-section-number">2.2.4.1</span> Code</h4>
+<ul>
+<li>Insert R Chunk<br />
+</li>
+<li>Write code in chunk</li>
+</ul>
+<div class="figure">
+<img src="Rchunk.JPG" alt="" />
+<p class="caption">Inserting R Chunk</p>
+</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="RmdTools.html#cb10-1" aria-hidden="true"></a><span class="kw">data</span>(<span class="st">&quot;iris&quot;</span>)</span>
+<span id="cb10-2"><a href="RmdTools.html#cb10-2" aria-hidden="true"></a><span class="kw">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+</div>
+<div id="plot" class="section level4" number="2.2.4.2">
+<h4><span class="header-section-number">2.2.4.2</span> Plot</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="RmdTools.html#cb12-1" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="RmdTools.html#cb12-2" aria-hidden="true"></a><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Petal.Length)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="Practice-Book_files/figure-html/plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="figure-options" class="section level4" number="2.2.4.3">
+<h4><span class="header-section-number">2.2.4.3</span> Figure options</h4>
+<ul>
+<li>fig.align = “center” “right” “left”</li>
+<li>fig.asp = ratio of width:height, height is calculated from fig.width*fig.asp</li>
+<li>fig.margin = TRUE (place figure in figure margin)</li>
+<li>fig.fullwidth = TRUE (figure is across full width)</li>
+<li>fig.width</li>
+<li>fig.height</li>
+<li>fig.dim = c(8,6) (width, height)</li>
+<li>fig.link - add a link to the figure</li>
+<li>fig.cap = figure caption</li>
+<li>out.width, out.height - specify output size
+<ul>
+<li>out.width = “50%” (can then include two figures side by side)</li>
+<li>out.width = 8</li>
+</ul></li>
+<li>out.extra - miscellaneous
+<ul>
+<li>out.extra = ‘angle=90’</li>
+</ul></li>
+</ul>
+</div>
+<div id="image-caption" class="section level4" number="2.2.4.4">
+<h4><span class="header-section-number">2.2.4.4</span> Image caption</h4>
+<pre><code>A normal paragraph.
+
+A scatterplot of the data <code>iris</code> using <strong>ggplot.</strong> A scatterplot of the data `cars` using **base** R graphics. 
+
+```
+{r iris-fig, fig.cap=&#39;A scatterplot of the data <code>iris</code> using <strong>ggplot.</strong>&#39;}
+plot(cars)  # a scatterplot
+```</code></pre>
+<p>A normal paragraph.</p>
+
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="RmdTools.html#cb14-1" aria-hidden="true"></a><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Sepal.Width)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:iris-fig"></span>
+<img src="Practice-Book_files/figure-html/iris-fig-1.png" alt="A scatterplot of the data iris using ggplot." width="672" />
+<p class="caption">
+Figure 2.1: A scatterplot of the data <code>iris</code> using <strong>ggplot.</strong>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="tables" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Tables</h2>
+<p>Use <code>kable</code></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="RmdTools.html#cb15-1" aria-hidden="true"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb15-2"><a href="RmdTools.html#cb15-2" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(iris), <span class="st">&quot;simple&quot;</span>,  <span class="dt">caption =</span> <span class="st">&quot;Table with caption&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:iris-table">Table 2.1: </span>Table with caption</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="images" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Images</h2>
+<p><code>![Here are some baby salmon](salmon.jpg)</code></p>
+<div class="figure">
+<img src="salmon.jpg" alt="" />
+<p class="caption">Here are some baby salmon</p>
+</div>
+</div>
+<div id="in-text-references" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> In text References</h2>
+<div id="figuretablechapter" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Figure/Table/Chapter</h3>
+<pre><code>Table: \@ref(tab:iris-table)
+Figure: \@ref(fig:iris-fig)
+Chapter of this book: \@ref(intro)</code></pre>
+<div class="figure">
+<img src="FigureCaption.JPG" alt="" />
+<p class="caption">See name of figure (iris-fig)</p>
+</div>
+<pre><code>You can label chapter and section titles using `{#label}` after them,  
+e.g., we can reference Chapter \@ref(intro).   
+If you do not manually label them, there will be automatic labels anyway,  
+e.g., Chapter \@ref(RCoding).</code></pre>
+<ul>
+<li>See table: <a href="RmdTools.html#tab:iris-table">2.1</a><br />
+</li>
+<li>See figure: <a href="RmdTools.html#fig:iris-fig">2.1</a><br />
+</li>
+<li>Go to intro: <a href="intro.html#intro">1</a></li>
+</ul>
+</div>
+<div id="citations" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Citations</h3>
+<p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(Xie <a href="#ref-R-bookdown" role="doc-biblioref">2020</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-xie2015" role="doc-biblioref">2015</a>)</span>.</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.</p>
+</div>
+<div id="ref-R-bookdown">
+<p>Xie, Yihui. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="RCoding.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Practice Book.html", "Practice Book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
