@@ -1,0 +1,24 @@
+# References {-}
+
+## Bookdown
+
+* https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf  
+* https://bookdown.org/yihui/rmarkdown/  
+* https://github.com/rstudio/bookdown-demo  
+
+## RMarkdown
+
+* https://cawater.sharepoint.com/teams/des-owq-ee/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=Rzuj2c&cid=3e988094-c52e-4997-bb80-d748370a6d0e&RootFolder=%2Fteams%2Fdes-owq-ee%2FShared%20Documents%2FGuides%20and%20Procedures%2FRMarkdown%20Tutorial&FolderCTID=0x012000D268E5AEEC570C48A762CD4EB78D71AA 
+* Chunk options: https://yihui.org/knitr/options/
+
+## Plotly Annotations and Labels
+
+* https://plotly.com/r/text-and-annotations/ 
+
+## Leaflet 
+* https://allthisblog.wordpress.com/2016/10/12/r-311-with-leaflet-tutorial/
+* https://learn.r-journalism.com/en/mapping/leaflet_maps/leaflet/
+
+## Example Book
+
+* https://interagencyecologicalprogram.github.io/Status-and-Trends/Summer.html#recent-trends-summer-2004-2018

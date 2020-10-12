@@ -1,0 +1,30 @@
+# Coding {#RCoding}
+
+## Chunks
+Use "chunks" for code  
+Surround by tick marks  
+
+    ```
+    Code here   
+    ```
+    ## Chunk details
+
+See \@ref(RmdTools) for more info
+    
+## Chunk details
+
+Value      | What it does
+---------- | ------------ 
+eval       | whether to evaluate the code
+echo       | whether to display code along with its results
+warning    | whether to display warnings
+error      | whether to display errors
+message    | whether to display messages
+tidy       | whether to reformat code in a tidy way when displaying
+results    | "markup", "asis", "hold", "hide"
+cache      | whether to cache results for future renders
+comments   | comment character to preface results with
+fig.width  | default = 7
+fig.height | default = 7
+
+
