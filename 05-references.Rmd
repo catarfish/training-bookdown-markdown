@@ -8,7 +8,8 @@
 
 ## RMarkdown
 
-* https://cawater.sharepoint.com/teams/des-owq-ee/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=Rzuj2c&cid=3e988094-c52e-4997-bb80-d748370a6d0e&RootFolder=%2Fteams%2Fdes-owq-ee%2FShared%20Documents%2FGuides%20and%20Procedures%2FRMarkdown%20Tutorial&FolderCTID=0x012000D268E5AEEC570C48A762CD4EB78D71AA 
+* Handy cheatsheet: https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf
+* Rosie's tutorial: https://cawater.sharepoint.com/teams/des-owq-ee/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=Rzuj2c&cid=3e988094-c52e-4997-bb80-d748370a6d0e&RootFolder=%2Fteams%2Fdes-owq-ee%2FShared%20Documents%2FGuides%20and%20Procedures%2FRMarkdown%20Tutorial&FolderCTID=0x012000D268E5AEEC570C48A762CD4EB78D71AA 
 * Chunk options: https://yihui.org/knitr/options/
 
 ## Plotly Annotations and Labels
