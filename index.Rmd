@@ -1,14 +1,19 @@
 --- 
 title: "Markdown/Bookdown Tutorial"
 author: "Catarina Pien"
+description: "This is an intro to RMarkdown and Bookdown."
+url: "https://catarfish.github.io/training-bookdown-markdown/"
+github-repo: "catarfish/training-bookdown-markdown"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography:
+- book.bib
+- packages.bib
 biblio-style: apalike
+documentclass: book
 link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+site: bookdown::bookdown_site
 always_allow_html: yes
+output_dir: "docs"
 ---
 The **bookdown** package can be installed from CRAN or Github:
 
