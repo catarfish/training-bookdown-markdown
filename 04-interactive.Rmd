@@ -14,7 +14,7 @@ summary(iris)
 
 ### Plot
 Different ways to code: 
-```{r plotly plot, warning = FALSE, message = FALSE}
+```{r plotlyPlot, warning = FALSE, message = FALSE}
 plot_ly(iris, x = ~Sepal.Width, y = ~Sepal.Length, type = "scatter", 
         hoverinfo = "text",
         text = ~paste('</br> Species: ', Species,
@@ -48,7 +48,7 @@ Station2 <- Stations %>%
 
 Make map - Color by factor
 
-```{r leaflet map, warning = FALSE, message = FALSE}
+```{r leafletMap, warning = FALSE, message = FALSE}
 # Palette from viridis
   staPal <- colorFactor("viridis", domain = Stations$Agency)
   
