@@ -27,5 +27,7 @@
   keep_tex: yes" and replace the 
 "bookdown::epub: default" with
 "bookdown::html_document2: default"
+* epub: kindle books 
+* default: if you don't specify in "render_book" it will create your default
 
 * In your index.Rmd file, add "always_allow_html: yes" to the options at the top
