@@ -179,23 +179,71 @@ The \textbf{bookdown} package can be installed from CRAN or Github:
   Each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading \texttt{\#}.
 \end{itemize}
 
+\hypertarget{publishing-the-book-to-share-with-others}{%
+\section{Publishing the book to share with others}\label{publishing-the-book-to-share-with-others}}
+
+\begin{itemize}
+\tightlist
+\item
+  See \url{https://bookdown.org/yihui/bookdown/github.html} for how to publish book
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All html output and source files (CSS, images, javascript) need to be in the docs folder.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Option A: Add a ``docs'' folder to the folder all your Rmd files are in, then in your \_bookdown.yml file, add the line output\_dir: ``docs''
+    \item
+      Option B: Change the directory "\_book" to ``docs''
+    \end{itemize}
+  \item
+    Also add a .nojekyll fill to your docs folder
+  \end{itemize}
+\item
+  To compile your book:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Option A: Use the ``Build'' tab (next to Environment and History) and click ``Build Book''
+  \item
+    Option B: Create a .R file and use the command ``render\_book'' to render your book (see RunBook.R) in my GitHub.
+  \end{itemize}
+\item
+  Connect your book project to GitHub if you haven't already.
+\item
+  Add all files to GitHub.
+\item
+  In your GitHub repo, go to Settings, GitHub Pages, change Source to master/ and /docs
+\item
+  Your shareable link is displayed under GitHub Pages!
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{GitHubSite.jpg}
+\caption{GitHub Pages Instructions}
+\end{figure}
+
 \hypertarget{other-tips}{%
 \section{Other tips}\label{other-tips}}
 
-\begin{itemize}
-\item
-  In your \_output.yml file: delete
-  ``bookdown::pdf\_book:
-  includes:
-  in\_header: preamble.tex
-  latex\_engine: xelatex
-  citation\_package: natbib
-  keep\_tex: yes'' and replace the
-  ``bookdown::epub: default'' with
-  ``bookdown::html\_document2: default''
-\item
-  In your index.Rmd file, add ``always\_allow\_html: yes'' to the options at the top
-\end{itemize}
+If your book is not running and your error message is to do with latex:
+* In your \_output.yml file: delete
+``bookdown::pdf\_book:
+includes:
+in\_header: preamble.tex
+latex\_engine: xelatex
+citation\_package: natbib
+keep\_tex: yes'' and replace the
+``bookdown::epub: default'' with
+``bookdown::html\_document2: default''
+* In your index.Rmd file, add ``always\_allow\_html: yes'' to the options at the top
+* epub: kindle books, probably don't need this
+* default: if you don't specify in ``render\_book'' it will create your default
 
 \hypertarget{RmdTools}{%
 \chapter{Rmd Basics for crafting your document}\label{RmdTools}}
@@ -697,7 +745,7 @@ Different ways to code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Practice-Book_files/figure-latex/plotly plot-1.pdf}
+\includegraphics{Practice-Book_files/figure-latex/plotlyPlot-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -707,7 +755,7 @@ Different ways to code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Practice-Book_files/figure-latex/plotly plot-2.pdf}
+\includegraphics{Practice-Book_files/figure-latex/plotlyPlot-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -716,7 +764,7 @@ Different ways to code:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Practice-Book_files/figure-latex/plotly plot-3.pdf}
+\includegraphics{Practice-Book_files/figure-latex/plotlyPlot-3.pdf}
 
 \hypertarget{leaflet}{%
 \section{Leaflet}\label{leaflet}}
@@ -791,7 +839,7 @@ Make map - Color by factor
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Practice-Book_files/figure-latex/leaflet map-1.pdf}
+\includegraphics{Practice-Book_files/figure-latex/leafletMap-1.pdf}
 
 Make map - size and color by numeric
 

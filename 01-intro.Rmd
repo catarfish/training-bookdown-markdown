@@ -17,7 +17,25 @@
   + 02-yourchapter2title.Rmd  
 * Each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
 
+## Publishing the book to share with others
+* See https://bookdown.org/yihui/bookdown/github.html for how to publish book
+  * All html output and source files (CSS, images, javascript) need to be in the docs folder.
+    * Option A: Add a "docs" folder to the folder all your Rmd files are in, then in your _bookdown.yml file, add the line output_dir: "docs"
+    * Option B: Change the directory "_book" to "docs"
+  * Also add a .nojekyll fill to your docs folder 
+* To compile your book:
+  * Option A: Use the "Build" tab (next to Environment and History) and click "Build Book"
+  * Option B: Create a .R file and use the command "render_book" to render your book (see RunBook.R) in my GitHub.
+* Connect your book project to GitHub if you haven't already.
+* Add all files to GitHub.
+* In your GitHub repo, go to Settings, GitHub Pages, change Source to master/ and /docs
+* Your shareable link is displayed under GitHub Pages!
+
+![GitHub Pages Instructions](GitHubSite.jpg)
+
+
 ## Other tips
+If your book is not running and your error message is to do with latex: 
 * In your _output.yml file: delete 
 "bookdown::pdf_book:
   includes:
@@ -27,7 +45,6 @@
   keep_tex: yes" and replace the 
 "bookdown::epub: default" with
 "bookdown::html_document2: default"
-* epub: kindle books 
-* default: if you don't specify in "render_book" it will create your default
-
 * In your index.Rmd file, add "always_allow_html: yes" to the options at the top
+* epub: kindle books, probably don't need this
+* default: if you don't specify in "render_book" it will create your default

@@ -151,7 +151,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#directions-to-start-a-book-after-downloading-packages-described"><i class="fa fa-check"></i><b>1.1</b> Directions to start a book (after downloading packages described)</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#structure-of-book"><i class="fa fa-check"></i><b>1.2</b> Structure of book</a></li>
-<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#other-tips"><i class="fa fa-check"></i><b>1.3</b> Other tips</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#publishing-the-book-to-share-with-others"><i class="fa fa-check"></i><b>1.3</b> Publishing the book to share with others</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#other-tips"><i class="fa fa-check"></i><b>1.4</b> Other tips</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="RmdTools.html"><a href="RmdTools.html"><i class="fa fa-check"></i><b>2</b> Rmd Basics for crafting your document</a>
 <ul>
@@ -252,10 +253,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</li>
 </ul>
 </div>
-<div id="other-tips" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Other tips</h2>
+<div id="publishing-the-book-to-share-with-others" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Publishing the book to share with others</h2>
 <ul>
-<li><p>In your _output.yml file: delete
+<li>See <a href="https://bookdown.org/yihui/bookdown/github.html" class="uri">https://bookdown.org/yihui/bookdown/github.html</a> for how to publish book
+<ul>
+<li>All html output and source files (CSS, images, javascript) need to be in the docs folder.
+<ul>
+<li>Option A: Add a “docs” folder to the folder all your Rmd files are in, then in your _bookdown.yml file, add the line output_dir: “docs”</li>
+<li>Option B: Change the directory "_book" to “docs”</li>
+</ul></li>
+<li>Also add a .nojekyll fill to your docs folder</li>
+</ul></li>
+<li>To compile your book:
+<ul>
+<li>Option A: Use the “Build” tab (next to Environment and History) and click “Build Book”</li>
+<li>Option B: Create a .R file and use the command “render_book” to render your book (see RunBook.R) in my GitHub.</li>
+</ul></li>
+<li>Connect your book project to GitHub if you haven’t already.</li>
+<li>Add all files to GitHub.</li>
+<li>In your GitHub repo, go to Settings, GitHub Pages, change Source to master/ and /docs</li>
+<li>Your shareable link is displayed under GitHub Pages!</li>
+</ul>
+<div class="figure">
+<img src="GitHubSite.JPG" alt="" />
+<p class="caption">GitHub Pages Instructions</p>
+</div>
+</div>
+<div id="other-tips" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Other tips</h2>
+<p>If your book is not running and your error message is to do with latex:
+* In your _output.yml file: delete
 “bookdown::pdf_book:
 includes:
 in_header: preamble.tex
@@ -263,11 +291,10 @@ latex_engine: xelatex
 citation_package: natbib
 keep_tex: yes” and replace the
 “bookdown::epub: default” with
-“bookdown::html_document2: default”</p></li>
-<li><p>epub: kindle books</p></li>
-<li><p>default: if you don’t specify in “render_book” it will create your default</p></li>
-<li><p>In your index.Rmd file, add “always_allow_html: yes” to the options at the top</p></li>
-</ul>
+“bookdown::html_document2: default”
+* In your index.Rmd file, add “always_allow_html: yes” to the options at the top
+* epub: kindle books, probably don’t need this
+* default: if you don’t specify in “render_book” it will create your default</p>
 
 </div>
 </div>
