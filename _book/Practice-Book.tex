@@ -1,0 +1,884 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Markdown/Bookdown Tutorial},
+  pdfauthor={Catarina Pien},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Markdown/Bookdown Tutorial}
+\author{Catarina Pien}
+\date{2020-10-13}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+The \textbf{bookdown} package can be installed from CRAN or Github:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
+\CommentTok{\# or the development version}
+\CommentTok{\# devtools::install\_github("rstudio/bookdown")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{intro}{%
+\chapter{Introduction}\label{intro}}
+
+\hypertarget{directions-to-start-a-book-after-downloading-packages-described}{%
+\section{Directions to start a book (after downloading packages described)}\label{directions-to-start-a-book-after-downloading-packages-described}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Open R Studio
+\item
+  File - New Project - New Directory - New Book Project
+\item
+  Save where you think it should be.
+\item
+  To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.org/tinytex/}.
+\item
+  If you have errors when trying to compile the book, go to the debug website provided in your warnings.
+\end{enumerate}
+
+\hypertarget{structure-of-book}{%
+\section{Structure of book}\label{structure-of-book}}
+
+\begin{itemize}
+\tightlist
+\item
+  There will be multiple Rmd (R Markdown) files - one for each chapter.
+\item
+  File naming:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    index.Rmd
+  \item
+    01-yourchapter1title.Rmd
+  \item
+    02-yourchapter2title.Rmd\\
+  \end{itemize}
+\item
+  Each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading \texttt{\#}.
+\end{itemize}
+
+\hypertarget{other-tips}{%
+\section{Other tips}\label{other-tips}}
+
+\begin{itemize}
+\item
+  In your \_output.yml file: delete
+  ``bookdown::pdf\_book:
+  includes:
+  in\_header: preamble.tex
+  latex\_engine: xelatex
+  citation\_package: natbib
+  keep\_tex: yes'' and replace the
+  ``bookdown::epub: default'' with
+  ``bookdown::html\_document2: default''
+\item
+  In your index.Rmd file, add ``always\_allow\_html: yes'' to the options at the top
+\end{itemize}
+
+\hypertarget{RmdTools}{%
+\chapter{Rmd Basics for crafting your document}\label{RmdTools}}
+
+\hypertarget{display}{%
+\section{Display}\label{display}}
+
+\hypertarget{font}{%
+\subsection{Font}\label{font}}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Italics}: \texttt{\_text\_} or \texttt{*text*}
+\item
+  \textbf{Bold}: \texttt{\_\_text\_\_} (two underscores) or \texttt{**text**}
+\item
+  Subscripts e.g.~H\textsubscript{2}O \texttt{H\textasciitilde{}2\textasciitilde{}O}
+\end{itemize}
+
+\hypertarget{blockquotes}{%
+\subsection{Blockquotes}\label{blockquotes}}
+
+Use \texttt{\textgreater{}}
+
+\begin{verbatim}
+> "To sustainably manage the water resources of California, in cooperation with 
+> other agencies, to benefit the state's people and protect, restore, and enhance the
+> natural and human environments." 
+> 
+> --- DWR
+\end{verbatim}
+
+\begin{quote}
+``To sustainably manage the water resources of California, in cooperation with other
+agencies, to benefit the state's people and protect, restore, and
+enhance the natural and human environments.''
+
+--- DWR
+\end{quote}
+
+\hypertarget{indent-text}{%
+\subsection{Indent Text}\label{indent-text}}
+
+Use \texttt{\textbar{}}
+
+\begin{verbatim}
+| Here you can 
+|  indent and separate 
+|   lines
+|    for fun 
+|   patterns
+|  like
+| this 
+\end{verbatim}
+
+Here you can\\
+\hspace*{0.333em}indent and separate\\
+\hspace*{0.333em}\hspace*{0.333em}lines\\
+\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}for fun\\
+\hspace*{0.333em}\hspace*{0.333em}patterns\\
+\hspace*{0.333em}like\\
+this
+
+\hypertarget{text-in-a-gray-block}{%
+\subsection{Text in a gray block}\label{text-in-a-gray-block}}
+
+Enclose in \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}} or indent by 4 spaces
+
+\begin{verbatim}
+``` 
+Here is a chunk of code 
+```    
+\end{verbatim}
+
+Result:
+
+\begin{verbatim}
+Here is a chunk of code
+\end{verbatim}
+
+\hypertarget{equations}{%
+\subsection{Equations}\label{equations}}
+
+Equations\\
+Surround with \texttt{\$}
+
+\begin{verbatim}
+$a^2 + b^2 = c^2$  
+\end{verbatim}
+
+\(a^2 + b^2 = c^2\).
+
+Alternatively for a more complicated equation:
+
+\begin{verbatim}
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  \label{eq:binom}
+\end{equation} 
+\end{verbatim}
+
+(The \#eq:binom can be used to reference this equation later)
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  \label{eq:binom}
+\end{equation}
+
+\hypertarget{organization}{%
+\section{Organization}\label{organization}}
+
+\hypertarget{headers}{%
+\subsection{Headers:}\label{headers}}
+
+\texttt{\#\ Header\ 1\ (Largest)}~\\
+\texttt{\#\#\ Header\ 2}~\\
+\texttt{\#\#\#\ Header\ 3}
+
+\hypertarget{header-with-no-numbering}{%
+\subsection*{Header with no numbering:}\label{header-with-no-numbering}}
+\addcontentsline{toc}{subsection}{Header with no numbering:}
+
+\texttt{\#\#\#\ Header\ \{-\}}
+
+\hypertarget{lists}{%
+\subsection{Lists:}\label{lists}}
+
+\hypertarget{use---or}{%
+\subsubsection{\texorpdfstring{Use \texttt{*}, \texttt{-}, or \texttt{+}}{Use *, -, or +}}\label{use---or}}
+
+\begin{verbatim}
+* peas
+* apples
+* carrots
+  * baby
+  * large
+    * colored
+    * orange
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  peas
+\item
+  apples
+\item
+  carrots
+
+  \begin{itemize}
+  \tightlist
+  \item
+    baby
+  \item
+    large
+
+    \begin{itemize}
+    \tightlist
+    \item
+      colored
+    \item
+      orange
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{use-numbers}{%
+\subsubsection{Use numbers:}\label{use-numbers}}
+
+\begin{verbatim}
+1. Enter data
+2. QAQC
+3. Publish Data  
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Enter data
+\item
+  QAQC
+\item
+  Publish Data
+\end{enumerate}
+
+\hypertarget{tabs}{%
+\subsection{Tabs}\label{tabs}}
+
+Use \texttt{\{.tabset\}} and header levels. Sub-headers (exactly one level down) will become tabs.\\
+\texttt{\#\#\#\ Project\ \{.tabset\}}~\\
+\texttt{\#\#\#\#\ Part\ A}~\\
+\texttt{\#\#\#\#\ Part\ B}
+
+\hypertarget{code-plotting-captions}{%
+\subsection{Code, Plotting, Captions}\label{code-plotting-captions}}
+
+\hypertarget{code}{%
+\subsubsection{Code}\label{code}}
+
+\begin{itemize}
+\tightlist
+\item
+  Insert R Chunk\\
+\item
+  Write code in chunk
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{Rchunk.jpg}
+\caption{Inserting R Chunk}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{"iris"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## 
+\end{verbatim}
+
+\hypertarget{plot}{%
+\subsubsection{Plot}\label{plot}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Sepal.Length, }\DataTypeTok{y =}\NormalTok{ Petal.Length)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Practice-Book_files/figure-latex/plot-1} \end{center}
+
+\hypertarget{figure-options}{%
+\subsubsection{Figure options}\label{figure-options}}
+
+\begin{itemize}
+\tightlist
+\item
+  fig.align = ``center'' ``right'' ``left''
+\item
+  fig.asp = ratio of width:height, height is calculated from fig.width*fig.asp
+\item
+  fig.margin = TRUE (place figure in figure margin)
+\item
+  fig.fullwidth = TRUE (figure is across full width)
+\item
+  fig.width
+\item
+  fig.height
+\item
+  fig.dim = c(8,6) (width, height)
+\item
+  fig.link - add a link to the figure
+\item
+  fig.cap = figure caption
+\item
+  out.width, out.height - specify output size
+
+  \begin{itemize}
+  \tightlist
+  \item
+    out.width = ``50\%'' (can then include two figures side by side)
+  \item
+    out.width = 8
+  \end{itemize}
+\item
+  out.extra - miscellaneous
+
+  \begin{itemize}
+  \tightlist
+  \item
+    out.extra = `angle=90'
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{image-caption}{%
+\subsubsection{Image caption}\label{image-caption}}
+
+\begin{verbatim}
+A normal paragraph.
+
+
+
+```
+{r iris-fig, fig.cap='A scatterplot of the data `cars` using **base** R graphics. '}
+plot(cars)  # a scatterplot
+```
+\end{verbatim}
+
+A normal paragraph.
+
+A scatterplot of the data `cars` using **base** R graphics.  A scatterplot of the data \texttt{iris} using \textbf{ggplot.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Sepal.Length, }\DataTypeTok{y =}\NormalTok{ Sepal.Width)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{Practice-Book_files/figure-latex/iris-fig-1} 
+
+}
+
+\caption{A scatterplot of the data `cars` using **base** R graphics. }\label{fig:iris-fig}
+\end{figure}
+
+\hypertarget{tables}{%
+\section{Tables}\label{tables}}
+
+Use \texttt{kable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(knitr)}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(iris), }\StringTok{"simple"}\NormalTok{,  }\DataTypeTok{caption =} \StringTok{"Table with caption"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrrl@{}}
+\caption{\label{tab:iris-table}Table with caption}\tabularnewline
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\tabularnewline
+\midrule
+\endhead
+5.1 & 3.5 & 1.4 & 0.2 & setosa\tabularnewline
+4.9 & 3.0 & 1.4 & 0.2 & setosa\tabularnewline
+4.7 & 3.2 & 1.3 & 0.2 & setosa\tabularnewline
+4.6 & 3.1 & 1.5 & 0.2 & setosa\tabularnewline
+5.0 & 3.6 & 1.4 & 0.2 & setosa\tabularnewline
+5.4 & 3.9 & 1.7 & 0.4 & setosa\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{images}{%
+\section{Images}\label{images}}
+
+\texttt{!{[}Here\ are\ some\ baby\ salmon{]}(salmon.jpg)}
+
+\begin{figure}
+\centering
+\includegraphics{salmon.jpg}
+\caption{Here are some baby salmon}
+\end{figure}
+
+\hypertarget{in-text-references}{%
+\section{In text References}\label{in-text-references}}
+
+\hypertarget{figuretablechapter}{%
+\subsection{Figure/Table/Chapter}\label{figuretablechapter}}
+
+\begin{verbatim}
+Table: \\ref{tab:iris-table}
+Figure: \\ref{fig:iris-fig}
+Chapter of this book: \\ref{intro}
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{FigureCaption.jpg}
+\caption{See name of figure (iris-fig)}
+\end{figure}
+
+\begin{verbatim}
+You can label chapter and section titles using `{#label}` after them,  
+e.g., we can reference Chapter \\ref{intro}.   
+If you do not manually label them, there will be automatic labels anyway,  
+e.g., Chapter \\ref{RCoding}.
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  See table: \ref{tab:iris-table}\\
+\item
+  See figure: \ref{fig:iris-fig}\\
+\item
+  Go to intro: \ref{intro}
+\end{itemize}
+
+\hypertarget{citations}{%
+\subsection{Citations}\label{citations}}
+
+You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+
+\hypertarget{RCoding}{%
+\chapter{Coding}\label{RCoding}}
+
+\hypertarget{chunks}{%
+\section{Chunks}\label{chunks}}
+
+Use ``chunks'' for code\\
+Surround by tick marks
+
+\begin{verbatim}
+```
+Code here   
+```
+## Chunk details
+\end{verbatim}
+
+See \ref{RmdTools} for more info
+
+\hypertarget{chunk-details}{%
+\section{Chunk details}\label{chunk-details}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Value & What it does\tabularnewline
+\midrule
+\endhead
+eval & whether to evaluate the code\tabularnewline
+echo & whether to display code along with its results\tabularnewline
+warning & whether to display warnings\tabularnewline
+error & whether to display errors\tabularnewline
+message & whether to display messages\tabularnewline
+tidy & whether to reformat code in a tidy way when displaying\tabularnewline
+results & ``markup'', ``asis'', ``hold'', ``hide''\tabularnewline
+cache & whether to cache results for future renders\tabularnewline
+comments & comment character to preface results with\tabularnewline
+fig.width & default = 7\tabularnewline
+fig.height & default = 7\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{interactive-tools}{%
+\chapter{Interactive tools}\label{interactive-tools}}
+
+\hypertarget{plotly}{%
+\section{Plotly}\label{plotly}}
+
+Install plotly.
+
+\hypertarget{code}{%
+\subsection{Code}\label{code}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(plotly)}
+\KeywordTok{data}\NormalTok{(}\StringTok{"iris"}\NormalTok{)}
+
+\KeywordTok{summary}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## 
+\end{verbatim}
+
+\hypertarget{plot}{%
+\subsection{Plot}\label{plot}}
+
+Different ways to code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot\_ly}\NormalTok{(iris, }\DataTypeTok{x =} \OperatorTok{\textasciitilde{}}\NormalTok{Sepal.Width, }\DataTypeTok{y =} \OperatorTok{\textasciitilde{}}\NormalTok{Sepal.Length, }\DataTypeTok{type =} \StringTok{"scatter"}\NormalTok{, }
+        \DataTypeTok{hoverinfo =} \StringTok{"text"}\NormalTok{,}
+        \DataTypeTok{text =} \OperatorTok{\textasciitilde{}}\KeywordTok{paste}\NormalTok{(}\StringTok{\textquotesingle{}\textless{}/br\textgreater{} Species: \textquotesingle{}}\NormalTok{, Species,}
+                      \StringTok{\textquotesingle{}\textless{}/br\textgreater{} Petal Length: \textquotesingle{}}\NormalTok{, Petal.Length,}
+                      \StringTok{\textquotesingle{}\textless{}/br\textgreater{} Petal Width: \textquotesingle{}}\NormalTok{, Petal.Width))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Practice-Book_files/figure-latex/plotly plot-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{plot\_ly}\NormalTok{(}\DataTypeTok{x =} \OperatorTok{\textasciitilde{}}\NormalTok{Sepal.Length, }\DataTypeTok{y =} \OperatorTok{\textasciitilde{}}\NormalTok{Petal.Length) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{add\_lines}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Practice-Book_files/figure-latex/plotly plot-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(iris, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Sepal.Width, }\DataTypeTok{y =}\NormalTok{ Sepal.Length)) }\OperatorTok{+}\StringTok{ }\KeywordTok{facet\_wrap}\NormalTok{(}\OperatorTok{\textasciitilde{}}\NormalTok{Species) }\OperatorTok{+}\StringTok{  }\KeywordTok{geom\_point}\NormalTok{()}
+\KeywordTok{ggplotly}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Practice-Book_files/figure-latex/plotly plot-3.pdf}
+
+\hypertarget{leaflet}{%
+\section{Leaflet}\label{leaflet}}
+
+Install leaflet.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(leaflet)}
+\KeywordTok{library}\NormalTok{(viridis)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+\NormalTok{Stations \textless{}{-}}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"StationsMetadata.csv"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(Stations)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Station          StationName        StartDateDataset   EndDateDataset    
+##  Length:138         Length:138         Length:138         Length:138        
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##     Agency             Latitude       Longitude      HydrologicArea    
+##  Length:138         Min.   :37.65   Min.   :-122.1   Length:138        
+##  Class :character   1st Qu.:37.84   1st Qu.:-121.7   Class :character  
+##  Mode  :character   Median :38.04   Median :-121.6   Mode  :character  
+##                     Mean   :38.02   Mean   :-121.6                     
+##                     3rd Qu.:38.16   3rd Qu.:-121.5                     
+##                     Max.   :38.79   Max.   :-121.1                     
+##     Basin              County          HabitatType       
+##  Length:138         Length:138         Length:138        
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+## 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Station2 \textless{}{-}}\StringTok{ }\NormalTok{Stations }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Year1 =} \KeywordTok{year}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(StartDateDataset, }\DataTypeTok{format =} \StringTok{"\%m/\%d/\%Y"}\NormalTok{)),}
+         \DataTypeTok{Year2 =} \KeywordTok{year}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(EndDateDataset, }\DataTypeTok{format =} \StringTok{"\%m/\%d/\%Y"}\NormalTok{)),}
+         \DataTypeTok{Range =}\NormalTok{ Year2}\OperatorTok{{-}}\NormalTok{Year1)}
+\end{Highlighting}
+\end{Shaded}
+
+Make map - Color by factor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Palette from viridis}
+\NormalTok{  staPal \textless{}{-}}\StringTok{ }\KeywordTok{colorFactor}\NormalTok{(}\StringTok{"viridis"}\NormalTok{, }\DataTypeTok{domain =}\NormalTok{ Stations}\OperatorTok{$}\NormalTok{Agency)}
+  
+\NormalTok{Stations }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\CommentTok{\# name of data}
+\StringTok{  }\KeywordTok{leaflet}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{addTiles}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{addCircleMarkers}\NormalTok{(}
+    \DataTypeTok{color =} \OperatorTok{\textasciitilde{}}\KeywordTok{staPal}\NormalTok{(Agency),}
+    \DataTypeTok{stroke =} \OtherTok{FALSE}\NormalTok{,}
+    \DataTypeTok{fillOpacity =} \FloatTok{0.9}\NormalTok{,}
+    \DataTypeTok{lng =} \OperatorTok{\textasciitilde{}}\NormalTok{Longitude,}
+    \DataTypeTok{lat =} \OperatorTok{\textasciitilde{}}\NormalTok{Latitude,}
+    \DataTypeTok{labelOptions =} \KeywordTok{labelOptions}\NormalTok{(}\DataTypeTok{noHide =}\NormalTok{ F),}
+    \DataTypeTok{popup =} \OperatorTok{\textasciitilde{}}\KeywordTok{paste}\NormalTok{(Station, }\StringTok{":"}\NormalTok{, StationName, }\StringTok{"\textless{}br/\textgreater{}"}\NormalTok{,}
+                   \StringTok{"Agency:"}\NormalTok{, Agency)) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{    }\KeywordTok{addLegend}\NormalTok{(}\DataTypeTok{pal =}\NormalTok{ staPal,}
+            \DataTypeTok{values =} \OperatorTok{\textasciitilde{}}\NormalTok{Agency,}
+            \DataTypeTok{position =} \StringTok{"bottomright"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Practice-Book_files/figure-latex/leaflet map-1.pdf}
+
+Make map - size and color by numeric
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{staPal2 \textless{}{-}}\StringTok{ }\KeywordTok{colorNumeric}\NormalTok{(}\StringTok{"viridis"}\NormalTok{, }\DataTypeTok{domain =}\NormalTok{ Station2}\OperatorTok{$}\NormalTok{Range)}
+
+\NormalTok{Station2 }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{leaflet}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{addTiles}\NormalTok{() }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{addCircleMarkers}\NormalTok{(}
+    \DataTypeTok{color =} \OperatorTok{\textasciitilde{}}\KeywordTok{staPal2}\NormalTok{(Range),}
+    \DataTypeTok{radius =} \OperatorTok{\textasciitilde{}}\NormalTok{Range,}
+    \DataTypeTok{stroke =} \OtherTok{FALSE}\NormalTok{,}
+    \DataTypeTok{fillOpacity =} \FloatTok{0.5}\NormalTok{,}
+    \DataTypeTok{lng =} \OperatorTok{\textasciitilde{}}\NormalTok{Longitude,}
+    \DataTypeTok{lat =} \OperatorTok{\textasciitilde{}}\NormalTok{Latitude,}
+    \DataTypeTok{labelOptions =} \KeywordTok{labelOptions}\NormalTok{(}\DataTypeTok{noHide =}\NormalTok{ F),}
+    \DataTypeTok{popup =} \OperatorTok{\textasciitilde{}}\KeywordTok{paste}\NormalTok{(Station, }\StringTok{":"}\NormalTok{, StationName, }\StringTok{"\textless{}br/\textgreater{}"}\NormalTok{,}
+                   \StringTok{"Agency:"}\NormalTok{, Agency)) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{    }\KeywordTok{addLegend}\NormalTok{(}\DataTypeTok{pal =}\NormalTok{ staPal2,}
+            \DataTypeTok{values =} \OperatorTok{\textasciitilde{}}\NormalTok{Range,}
+            \DataTypeTok{position =} \StringTok{"bottomright"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Practice-Book_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\hypertarget{bookdown}{%
+\section{Bookdown}\label{bookdown}}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf}~\\
+\item
+  \url{https://bookdown.org/yihui/rmarkdown/}~\\
+\item
+  \url{https://github.com/rstudio/bookdown-demo}
+\end{itemize}
+
+\hypertarget{rmarkdown}{%
+\section{RMarkdown}\label{rmarkdown}}
+
+\begin{itemize}
+\tightlist
+\item
+  Handy cheatsheet: \url{https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf}
+\item
+  Rosie's tutorial: \url{https://cawater.sharepoint.com/teams/des-owq-ee/Shared\%20Documents/Forms/AllItems.aspx?csf=1\&web=1\&e=Rzuj2c\&cid=3e988094-c52e-4997-bb80-d748370a6d0e\&RootFolder=\%2Fteams\%2Fdes-owq-ee\%2FShared\%20Documents\%2FGuides\%20and\%20Procedures\%2FRMarkdown\%20Tutorial\&FolderCTID=0x012000D268E5AEEC570C48A762CD4EB78D71AA}
+\item
+  Chunk options: \url{https://yihui.org/knitr/options/}
+\end{itemize}
+
+\hypertarget{plotly-annotations-and-labels}{%
+\section{Plotly Annotations and Labels}\label{plotly-annotations-and-labels}}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://plotly.com/r/text-and-annotations/}
+\end{itemize}
+
+\hypertarget{leaflet}{%
+\section{Leaflet}\label{leaflet}}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://allthisblog.wordpress.com/2016/10/12/r-311-with-leaflet-tutorial/}
+\item
+  \url{https://learn.r-journalism.com/en/mapping/leaflet_maps/leaflet/}
+\end{itemize}
+
+\hypertarget{example-book}{%
+\section{Example Book}\label{example-book}}
+
+\begin{itemize}
+\tightlist
+\item
+  \url{https://interagencyecologicalprogram.github.io/Status-and-Trends/Summer.html\#recent-trends-summer-2004-2018}
+\end{itemize}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
